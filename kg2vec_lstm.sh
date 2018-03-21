@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# arguments: <dataset_id> <training_data> <dimensions> <test_data> <verbalization_type> <neg_sampling>
+# arguments: <dataset_id> <training_data> <dimensions> <test_data> <verbalization_type> <neg_sampling> <training_epochs>
 echo "KG2Vec: dataset_id=$1 training_data=$2 dimensions=$3 test_data=$4 verbalization_type=$5 neg_sampling=$6 epochs=$7 scoring=lstm"
 
 # learning
