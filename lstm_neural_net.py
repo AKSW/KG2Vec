@@ -33,7 +33,7 @@ with open(embeddings) as f:
             continue
         vectors[line[0]] = line[1:]
         size = len(line[1:])
-print "Embeddings loaded."
+print("Embeddings loaded.")
 sys.stdout.flush()
 
 training = dict()
@@ -47,7 +47,7 @@ with open(train_triples) as f:
         training[key].append(line[2])
         X_train.append(seq)
         y_train.append(1.0)
-print "Training triples loaded and indexed."
+print("Training triples loaded and indexed.")
 sys.stdout.flush()
 
 X_test = list()
@@ -55,27 +55,27 @@ y_test = list()
 idx_test = list()
 with open(test_triples) as f:
     for line in f:
-        line = line[:-1].split(' ')        
+        line = line[:-1].split(' ')
         seq = [vectors[x] for x in line]
         idx_test.append(line)
         X_test.append(seq)
         y_test.append(1.0)
-print "Test triples loaded and indexed."
+print("Test triples loaded and indexed.")
 sys.stdout.flush()
 
+vkeys = list(vectors.keys())
 id2uri = dict()
 with open(dictionary) as f:
     for line in f:
         sp = line.find(' ')
         line = [line[:sp], line[sp+1:-1]]
         id2uri[line[0]] = line[1]
-print "Dictionary loaded."
-print "Negative sampling:", neg_sampling
+print("Dictionary loaded.")
+print("Negative sampling:", neg_sampling)
 sys.stdout.flush()
 if neg_sampling == "random":
-    
+
     tr_size = len(y_train)
-    vkeys = vectors.keys()
     lenv = len(vectors)
     for i in range(NEG_RATE * tr_size):
         idx0 = None
@@ -102,43 +102,43 @@ if neg_sampling == "random":
         idx = [idx0, idx1, idx2]
         # print [id2uri[x] for x in idx]
         sys.stdout.flush()
-        
+
         seq = [vectors[idx[x]] for x in range(3)]
         X_train.append(seq)
         y_train.append(0.0)
         if i % 1000 == 0:
-            print "{} negative triples sampled.".format(i+1)
+            print("{} negative triples sampled.".format(i+1))
             sys.stdout.flush()
 
 elif neg_sampling == "corrupt":
-    
+
     for key in training:
         idx_orig = key
         for j in range(len(training[key])):
             added = set()
             while len(added) < NEG_RATE:
-                random_obj = vectors.keys()[int(numpy.random.random() * len(vectors))]
+                random_obj = vkeys[int(numpy.random.random() * len(vectors))]
                 if random_obj not in training[key]:
                     added.add(random_obj)
             for random_obj in added:
                 idx = list(idx_orig)
                 idx.append(random_obj)
-                print [id2uri[x] for x in idx]
+                print([id2uri[x] for x in idx])
                 sys.stdout.flush()
-                
+
                 seq = [vectors[idx[x]] for x in range(3)]
                 X_train.append(seq)
                 y_train.append(0.0)
 
 else:
     # will probably fail for having no negatives
-    print "+++ WARNING: no negatives generated! +++"
+    print("+++ WARNING: no negatives generated! +++")
     sys.stdout.flush()
 
-print "dimensions:", size
-print "train size:", len(X_train)
+print("dimensions:", size)
+print("train size:", len(X_train))
 # print "train y:", y_train
-print "test size:", len(X_test)
+print("test size:", len(X_test))
 # print "test y:", y_test
 sys.stdout.flush()
 
@@ -189,8 +189,8 @@ for ttriple in idx_test:
     x0 = [[vectors[ttriple[0]], vectors[ttriple[1]], vectors[ttriple[2]]]]
     confid_x0 = model.predict(numpy.asarray(x0), verbose=0)[0][0]
     # print "{}\t<{}> <{}> <{}>".format(confid_x0, s_uri, p_uri, o_uri)
-    
-    for key in vectors.keys():
+
+    for key in vkeys:
         if key.startswith("pr_") or ttriple[2] == key:
             continue
         if (ttriple[0], ttriple[1]) in training:
@@ -211,6 +211,6 @@ for ttriple in idx_test:
             if score <= 1:
                 hits1 += 1
 
-print "hits@1:", float(hits1) / len(idx_test)
-print "hits@3:", float(hits3) / len(idx_test)
-print "hits@10:", float(hits10) / len(idx_test)
+print("hits@1:", float(hits1) / len(idx_test))
+print("hits@3:", float(hits3) / len(idx_test))
+print("hits@10:", float(hits10) / len(idx_test))

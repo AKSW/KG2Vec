@@ -99,3 +99,13 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+*.txt
+*.w2v
+*.bak
+*.nt
+lib/
+include/
+bin/
+pip-selfcheck.json
+AKSW-bib/
