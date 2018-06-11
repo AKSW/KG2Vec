@@ -5,8 +5,8 @@ import random
 import math
 import sys
 
-reload(sys)
-sys.setdefaultencoding("utf-8")
+#reload(sys)
+#sys.setdefaultencoding("utf-8")
 
 N_CONTEXTS = 1
 # SUBJECT_PRES = 0.2
@@ -23,22 +23,22 @@ class MyParser(NTriplesParser):
         super(MyParser, self).parse(f)
 
 class TrainingSink(Sink):
-    
+
     def __init__(self):
         self.d = dict()
         self.f = open("{}_dictionary.txt".format(dsid), 'w')
         self.out = open("{}_output.txt".format(dsid), 'w')
         self.prox = dict()
         self.preds = dict()
-    
+
     def finish(self):
         self.f.close()
         self.out.close()
-    
+
     def triple(self, s, p, o):
         if not type(o) is URIRef:
             return # ignore literals
-            
+
         # print s,p,o
         s_ = str(s)
         p_ = str(p)
@@ -57,9 +57,9 @@ class TrainingSink(Sink):
             self.d[o_] = "id_" + str(len(self.d))
             self.f.write("{} {}\n".format(self.d[o_], o_))
         o_id = self.d[o_]
-        
+
         self.out.write("{} {} {}\n".format(s_id, p_id, o_id))
-        
+
         # index proximities
         if s_id not in self.prox:
             self.prox[s_id] = list() # with repetition ~ weighted
@@ -78,18 +78,18 @@ class TrainingSink(Sink):
         # self.preds[p_id].append((s_id, o_id))
 
 class TestSink(Sink):
-    
+
     def __init__(self, d):
         self.d = d
         self.out = open("{}-test_output.txt".format(dsid), 'w')
-    
+
     def finish(self):
         self.out.close()
-    
+
     def triple(self, s, p, o):
         if not type(o) is URIRef:
             return # ignore literals
-            
+
         # print s,p,o
         s_ = str(s)
         p_ = str(p)
@@ -100,18 +100,18 @@ class TestSink(Sink):
             o_id = self.d[o_]
         except KeyError:
             return # ignore resources not in training data
-        
+
         self.out.write("{} {} {}\n".format(s_id, p_id, o_id))
 
 src = TrainingSink()
 src_n = MyParser(src)
-with open(filename, "r") as anons:
+with open(filename, "rb") as anons:
     src_n.parse(anons)
 
 if filename2 is not None:
     src2 = TestSink(src.d)
     src2_n = MyParser(src2)
-    with open(filename2, "r") as anons:
+    with open(filename2, "rb") as anons:
         src2_n.parse(anons)
 
 with open("{}_sentences.txt".format(dsid), 'w') as f:
@@ -131,7 +131,7 @@ with open("{}_sentences.txt".format(dsid), 'w') as f:
                 # sentences.add(extr)
                 pool.remove(extr)
             sentences.add(sentence.strip())
-        
+
         for s in sentences:
             f.write("{}\n".format(s))
 
