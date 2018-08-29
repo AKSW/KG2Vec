@@ -1,5 +1,5 @@
 # KG2Vec
-KG2Vec: Expeditious Generation of Knowledge Graph Embeddings
+🏎 KG2Vec: Expeditious Generation of Knowledge Graph Embeddings
 
 ## Usage
 
@@ -21,11 +21,12 @@ sh kg2vec_analogy.sh aksw-bib aksw-bib-train+valid.nt 10 aksw-bib-test.nt output
 
 ## Cite
 
+* Presented at the 5th European Conference on Data Analysis (ECDA 2018) as _"A Fast and Simple Approach to Knowledge Graph Embedding"_.
 * Working paper: https://arxiv.org/abs/1803.07828
 
 ```bib
 @proceedings{soru-kg2vec-2018,
-    author = "Tommaso Soru, Stefano Ruberto, Diego Moussallem, Edgard Marx, Diego Esteves, Axel-Cyrille Ngonga Ngomo",
+    author = "Tommaso Soru and Stefano Ruberto and Diego Moussallem and Edgard Marx and Diego Esteves and Axel-Cyrille {Ngonga Ngomo}",
     title = "Expeditious Generation of Knowledge Graph Embeddings",
     year = "2018",
 }
