@@ -21,7 +21,7 @@ sh kg2vec_analogy.sh aksw-bib aksw-bib-train+valid.nt 10 aksw-bib-test.nt output
 
 ## Cite
 
-* Presented at the 5th European Conference on Data Analysis (ECDA 2018) as _"A Fast and Simple Approach to Knowledge Graph Embedding"_.
+* Presented at the 5th European Conference on Data Analysis (ECDA 2018) as _"A Simple and Fast Approach to Knowledge Graph Embedding"_.
 * Working paper: https://arxiv.org/abs/1803.07828
 
 ```bib
