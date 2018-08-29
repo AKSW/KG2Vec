@@ -16,12 +16,12 @@ sh kg2vec_lstm.sh aksw-bib aksw-bib-train+valid.nt 10 aksw-bib-test.nt output ra
 
 ### Analogy-based scoring function
 ```bash
-sh kg2vec_analogy.sh aksw-bib aksw-bib-train+valid.nt 10 aksw-bib-test.nt
+sh kg2vec_analogy.sh aksw-bib aksw-bib-train+valid.nt 10 aksw-bib-test.nt output
 ```
 
-## Citing
+## Cite
 
-* arXiv: TBA
+* Working paper: https://arxiv.org/abs/1803.07828
 
 ```bib
 @proceedings{soru-kg2vec-2018,
