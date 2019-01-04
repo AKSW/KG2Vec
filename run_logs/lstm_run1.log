@@ -1,0 +1,256 @@
+(.env2) 11/8/18|3:23:46 ➜  KG2Vec git:(master) ✗
+$ sh kg2vec_lstm.sh aksw-bib aksw-bib.train+valid.nt 10 aksw-bib.test.nt output random 100
+
+KG2Vec: dataset_id=aksw-bib training_data=aksw-bib.train+valid.nt dimensions=10 test_data=aksw-bib.test.nt verbalization_type=output neg_sampling=random epochs=100 scoring=lstm
+2018-11-08 15:23:58,696 : INFO : 'pattern' package not found; tag filters are not available for English
+2018-11-08 15:23:58,700 : INFO : running train_model.py aksw-bib_output.txt 10
+2018-11-08 15:23:58,704 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2018-11-08 15:23:58,704 : INFO : collecting all words and their counts
+2018-11-08 15:23:58,704 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2018-11-08 15:23:58,715 : INFO : collected 954 word types from a corpus of 8262 raw words and 2754 sentences
+2018-11-08 15:23:58,715 : INFO : Loading a fresh vocabulary
+2018-11-08 15:23:58,720 : INFO : min_count=1 retains 954 unique words (100% of original 954, drops 0)
+2018-11-08 15:23:58,720 : INFO : min_count=1 leaves 8262 word corpus (100% of original 8262, drops 0)
+2018-11-08 15:23:58,723 : INFO : deleting the raw counts dictionary of 954 items
+2018-11-08 15:23:58,723 : INFO : sample=0 downsamples 0 most-common words
+2018-11-08 15:23:58,724 : INFO : downsampling leaves estimated 8262 word corpus (100.0% of prior 8262)
+2018-11-08 15:23:58,724 : INFO : estimated required memory for 954 words and 10 dimensions: 553320 bytes
+2018-11-08 15:23:58,726 : INFO : resetting layer weights
+2018-11-08 15:23:58,744 : INFO : training model with 4 workers on 954 vocabulary and 10 features, using sg=0 hs=0 sample=0 negative=5 window=3
+2018-11-08 15:23:58,836 : INFO : worker thread finished; awaiting finish of 3 more threads
+2018-11-08 15:23:58,838 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-11-08 15:23:58,838 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-11-08 15:23:58,841 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-11-08 15:23:58,842 : INFO : training on 41310 raw words (41310 effective words) took 0.1s, 434120 effective words/s
+2018-11-08 15:23:58,842 : WARNING : under 10 jobs per worker: consider setting a smaller `batch_words' for smoother alpha decay
+2018-11-08 15:23:58,842 : INFO : precomputing L2-norms of word weight vectors
+2018-11-08 15:23:58,849 : INFO : storing 954x10 projection weights into aksw-bib_output.txt.w2v
+Using TensorFlow backend.
+Embeddings loaded.
+Training triples loaded and indexed.
+Test triples loaded and indexed.
+Dictionary loaded.
+('Negative sampling:', 'random')
+1 negative triples sampled.
+1001 negative triples sampled.
+2001 negative triples sampled.
+('dimensions:', 10)
+('train size:', 5508)
+('test size:', 286)
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+lstm_1 (LSTM)                (None, 10)                840
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 11
+=================================================================
+Total params: 851
+Trainable params: 851
+Non-trainable params: 0
+_________________________________________________________________
+None
+Epoch 1/100
+2018-11-08 15:24:01.964730: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+5508/5508 [==============================] - 2s 378us/step - loss: 0.2408
+Epoch 2/100
+5508/5508 [==============================] - 1s 261us/step - loss: 0.1979
+Epoch 3/100
+5508/5508 [==============================] - 1s 264us/step - loss: 0.1492
+Epoch 4/100
+5508/5508 [==============================] - 1s 263us/step - loss: 0.1228
+Epoch 5/100
+5508/5508 [==============================] - 1s 262us/step - loss: 0.1055
+Epoch 6/100
+5508/5508 [==============================] - 1s 265us/step - loss: 0.0983
+Epoch 7/100
+5508/5508 [==============================] - 1s 254us/step - loss: 0.0942
+Epoch 8/100
+5508/5508 [==============================] - 1s 268us/step - loss: 0.0915
+Epoch 9/100
+5508/5508 [==============================] - 1s 266us/step - loss: 0.0890
+Epoch 10/100
+5508/5508 [==============================] - 1s 261us/step - loss: 0.0869
+Epoch 11/100
+5508/5508 [==============================] - 1s 265us/step - loss: 0.0841
+Epoch 12/100
+5508/5508 [==============================] - 2s 316us/step - loss: 0.0809
+Epoch 13/100
+5508/5508 [==============================] - 2s 324us/step - loss: 0.0770
+Epoch 14/100
+5508/5508 [==============================] - 2s 286us/step - loss: 0.0733
+Epoch 15/100
+5508/5508 [==============================] - 2s 276us/step - loss: 0.0703
+Epoch 16/100
+5508/5508 [==============================] - 2s 289us/step - loss: 0.0680
+Epoch 17/100
+5508/5508 [==============================] - 2s 273us/step - loss: 0.0661
+Epoch 18/100
+5508/5508 [==============================] - 2s 298us/step - loss: 0.0646
+Epoch 19/100
+5508/5508 [==============================] - 2s 289us/step - loss: 0.0633
+Epoch 20/100
+5508/5508 [==============================] - 2s 285us/step - loss: 0.0619
+Epoch 21/100
+5508/5508 [==============================] - 2s 296us/step - loss: 0.0611
+Epoch 22/100
+5508/5508 [==============================] - 2s 307us/step - loss: 0.0601
+Epoch 23/100
+5508/5508 [==============================] - 2s 296us/step - loss: 0.0593
+Epoch 24/100
+5508/5508 [==============================] - 2s 305us/step - loss: 0.0582
+Epoch 25/100
+5508/5508 [==============================] - 2s 305us/step - loss: 0.0574
+Epoch 26/100
+5508/5508 [==============================] - 2s 285us/step - loss: 0.0569
+Epoch 27/100
+5508/5508 [==============================] - 2s 289us/step - loss: 0.0560
+Epoch 28/100
+5508/5508 [==============================] - 2s 291us/step - loss: 0.0550
+Epoch 29/100
+5508/5508 [==============================] - 2s 303us/step - loss: 0.0543
+Epoch 30/100
+5508/5508 [==============================] - 2s 301us/step - loss: 0.0537
+Epoch 31/100
+5508/5508 [==============================] - 2s 305us/step - loss: 0.0532
+Epoch 32/100
+5508/5508 [==============================] - 1s 267us/step - loss: 0.0528
+Epoch 33/100
+5508/5508 [==============================] - 2s 286us/step - loss: 0.0521
+Epoch 34/100
+5508/5508 [==============================] - 2s 292us/step - loss: 0.0514
+Epoch 35/100
+5508/5508 [==============================] - 2s 289us/step - loss: 0.0511
+Epoch 36/100
+5508/5508 [==============================] - 2s 300us/step - loss: 0.0505
+Epoch 37/100
+5508/5508 [==============================] - 2s 285us/step - loss: 0.0502
+Epoch 38/100
+5508/5508 [==============================] - 2s 283us/step - loss: 0.0497
+Epoch 39/100
+5508/5508 [==============================] - 1s 271us/step - loss: 0.0490
+Epoch 40/100
+5508/5508 [==============================] - 2s 292us/step - loss: 0.0488
+Epoch 41/100
+5508/5508 [==============================] - 2s 285us/step - loss: 0.0482
+Epoch 42/100
+5508/5508 [==============================] - 2s 286us/step - loss: 0.0482
+Epoch 43/100
+5508/5508 [==============================] - 2s 348us/step - loss: 0.0474
+Epoch 44/100
+5508/5508 [==============================] - 2s 283us/step - loss: 0.0470
+Epoch 45/100
+5508/5508 [==============================] - 2s 284us/step - loss: 0.0470
+Epoch 46/100
+5508/5508 [==============================] - 2s 276us/step - loss: 0.0464
+Epoch 47/100
+5508/5508 [==============================] - 2s 284us/step - loss: 0.0460
+Epoch 48/100
+5508/5508 [==============================] - 2s 351us/step - loss: 0.0454
+Epoch 49/100
+5508/5508 [==============================] - 2s 280us/step - loss: 0.0453
+Epoch 50/100
+5508/5508 [==============================] - 2s 286us/step - loss: 0.0449
+Epoch 51/100
+5508/5508 [==============================] - 2s 316us/step - loss: 0.0444
+Epoch 52/100
+5508/5508 [==============================] - 2s 304us/step - loss: 0.0442
+Epoch 53/100
+5508/5508 [==============================] - 2s 297us/step - loss: 0.0439
+Epoch 54/100
+5508/5508 [==============================] - 2s 297us/step - loss: 0.0440
+Epoch 55/100
+5508/5508 [==============================] - 2s 304us/step - loss: 0.0433
+Epoch 56/100
+5508/5508 [==============================] - 2s 316us/step - loss: 0.0428
+Epoch 57/100
+5508/5508 [==============================] - 2s 323us/step - loss: 0.0426
+Epoch 58/100
+5508/5508 [==============================] - 2s 284us/step - loss: 0.0425
+Epoch 59/100
+5508/5508 [==============================] - 2s 302us/step - loss: 0.0420
+Epoch 60/100
+5508/5508 [==============================] - 2s 279us/step - loss: 0.0418
+Epoch 61/100
+5508/5508 [==============================] - 2s 282us/step - loss: 0.0414
+Epoch 62/100
+5508/5508 [==============================] - 2s 310us/step - loss: 0.0412
+Epoch 63/100
+5508/5508 [==============================] - 1s 272us/step - loss: 0.0412
+Epoch 64/100
+5508/5508 [==============================] - 1s 264us/step - loss: 0.0408
+Epoch 65/100
+5508/5508 [==============================] - 2s 289us/step - loss: 0.0405
+Epoch 66/100
+5508/5508 [==============================] - 2s 284us/step - loss: 0.0403
+Epoch 67/100
+5508/5508 [==============================] - 2s 280us/step - loss: 0.0401
+Epoch 68/100
+5508/5508 [==============================] - 2s 289us/step - loss: 0.0396
+Epoch 69/100
+5508/5508 [==============================] - 2s 286us/step - loss: 0.0398
+Epoch 70/100
+5508/5508 [==============================] - 2s 301us/step - loss: 0.0390
+Epoch 71/100
+5508/5508 [==============================] - 2s 274us/step - loss: 0.0390
+Epoch 72/100
+5508/5508 [==============================] - 2s 303us/step - loss: 0.0387
+Epoch 73/100
+5508/5508 [==============================] - 2s 284us/step - loss: 0.0386
+Epoch 74/100
+5508/5508 [==============================] - 2s 290us/step - loss: 0.0383
+Epoch 75/100
+5508/5508 [==============================] - 2s 277us/step - loss: 0.0381
+Epoch 76/100
+5508/5508 [==============================] - 2s 297us/step - loss: 0.0376
+Epoch 77/100
+5508/5508 [==============================] - 1s 257us/step - loss: 0.0375
+Epoch 78/100
+5508/5508 [==============================] - 1s 269us/step - loss: 0.0373
+Epoch 79/100
+5508/5508 [==============================] - 1s 267us/step - loss: 0.0370
+Epoch 80/100
+5508/5508 [==============================] - 1s 258us/step - loss: 0.0369
+Epoch 81/100
+5508/5508 [==============================] - 2s 294us/step - loss: 0.0368
+Epoch 82/100
+5508/5508 [==============================] - 2s 278us/step - loss: 0.0365
+Epoch 83/100
+5508/5508 [==============================] - 2s 285us/step - loss: 0.0363
+Epoch 84/100
+5508/5508 [==============================] - 2s 277us/step - loss: 0.0360
+Epoch 85/100
+5508/5508 [==============================] - 2s 294us/step - loss: 0.0360
+Epoch 86/100
+5508/5508 [==============================] - 2s 288us/step - loss: 0.0359
+Epoch 87/100
+5508/5508 [==============================] - 2s 288us/step - loss: 0.0354
+Epoch 88/100
+5508/5508 [==============================] - 2s 280us/step - loss: 0.0351
+Epoch 89/100
+5508/5508 [==============================] - 2s 276us/step - loss: 0.0351
+Epoch 90/100
+5508/5508 [==============================] - 1s 248us/step - loss: 0.0349
+Epoch 91/100
+5508/5508 [==============================] - 2s 275us/step - loss: 0.0348
+Epoch 92/100
+5508/5508 [==============================] - 2s 277us/step - loss: 0.0346
+Epoch 93/100
+5508/5508 [==============================] - 2s 285us/step - loss: 0.0342
+Epoch 94/100
+5508/5508 [==============================] - 2s 275us/step - loss: 0.0344
+Epoch 95/100
+5508/5508 [==============================] - 1s 262us/step - loss: 0.0341
+Epoch 96/100
+5508/5508 [==============================] - 1s 258us/step - loss: 0.0340
+Epoch 97/100
+5508/5508 [==============================] - 2s 292us/step - loss: 0.0339
+Epoch 98/100
+5508/5508 [==============================] - 2s 427us/step - loss: 0.0334
+Epoch 99/100
+5508/5508 [==============================] - 2s 332us/step - loss: 0.0336
+Epoch 100/100
+5508/5508 [==============================] - 1s 253us/step - loss: 0.0333
+('hits@1:', 0.017482517482517484)
+('hits@3:', 0.05944055944055944)
+('hits@10:', 0.21678321678321677)
+(.env2) 11/8/18|3:27:30 ➜  KG2Vec git:(master) ✗
