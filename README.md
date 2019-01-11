@@ -11,12 +11,12 @@ sh kg2vec_<scoring>.sh <dataset_id> <training_data> <dimensions> <test_data> <ve
 
 ### LSTM-based scoring function
 ```bash
-sh kg2vec_lstm.sh aksw-bib aksw-bib.train+valid.nt 10 aksw-bib.test.nt output random 100
+sh kg2vec_lstm.sh data/aksw-bib data/aksw-bib.train+valid.nt 10 data/aksw-bib.test.nt output random 100
 ```
 
 ### Analogy-based scoring function
 ```bash
-sh kg2vec_analogy.sh aksw-bib aksw-bib.train+valid.nt 10 aksw-bib.test.nt output
+sh kg2vec_analogy.sh data/aksw-bib data/aksw-bib.train+valid.nt 10 data/aksw-bib.test.nt output
 ```
 
 ## Cite
