@@ -68,7 +68,7 @@ id2uri = dict()
 with open(dictionary) as f:
     for line in f:
         sp = line.find(' ')
-        line = [line[:sp], line[sp+1:-1]]
+        line = [line[:sp], line[sp + 1:-1]]
         id2uri[line[0]] = line[1]
 print("Dictionary loaded.")
 print("Negative sampling:", neg_sampling)
@@ -107,7 +107,7 @@ if neg_sampling == "random":
         X_train.append(seq)
         y_train.append(0.0)
         if i % 1000 == 0:
-            print("{} negative triples sampled.".format(i+1))
+            print("{} negative triples sampled.".format(i + 1))
             sys.stdout.flush()
 
 elif neg_sampling == "corrupt":
@@ -160,13 +160,13 @@ y_test = numpy.asarray(y_test)
 
 # create the model
 model = Sequential()
-model.add(LSTM(size, input_shape=(3, size))) #, return_sequences=True))
+model.add(LSTM(size, input_shape=(3, size)))  # , return_sequences=True))
 # model.add(LSTM(size))
 model.add(Dense(1, activation='sigmoid'))
-model.compile(loss='mean_squared_error', optimizer='adam') #, metrics=['accuracy'])
+model.compile(loss='mean_squared_error', optimizer='adam')  # , metrics=['accuracy'])
 print(model.summary())
 sys.stdout.flush()
-model.fit(X_train, y_train, epochs=N_EPOCHS, batch_size=16) #, callbacks=[TestCallback((X_test, y_test))])
+model.fit(X_train, y_train, epochs=N_EPOCHS, batch_size=16)  # , callbacks=[TestCallback((X_test, y_test))])
 
 # # # # Final evaluation of the model
 # for i in range(len(y_test)):
@@ -195,7 +195,7 @@ for ttriple in idx_test:
             continue
         if (ttriple[0], ttriple[1]) in training:
             if key in training[(ttriple[0], ttriple[1])]:
-                continue # filtered hits@N
+                continue  # filtered hits@N
         x.append([vectors[ttriple[0]], vectors[ttriple[1]], vectors[key]])
         tpl.append("<{}> <{}> <{}>".format(s_uri, p_uri, id2uri[key]))
     confidence = model.predict(numpy.asarray(x), verbose=0)

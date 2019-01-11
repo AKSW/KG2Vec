@@ -5,8 +5,8 @@ import random
 import math
 import sys
 
-#reload(sys)
-#sys.setdefaultencoding("utf-8")
+# reload(sys)
+# sys.setdefaultencoding("utf-8")
 
 N_CONTEXTS = 1
 # SUBJECT_PRES = 0.2
@@ -18,9 +18,11 @@ if len(sys.argv) > 3:
 else:
     filename2 = None
 
+
 class MyParser(NTriplesParser):
     def parse(self, f):
         super(MyParser, self).parse(f)
+
 
 class TrainingSink(Sink):
 
@@ -37,7 +39,7 @@ class TrainingSink(Sink):
 
     def triple(self, s, p, o):
         if not type(o) is URIRef:
-            return # ignore literals
+            return  # ignore literals
 
         # print s,p,o
         s_ = str(s)
@@ -62,7 +64,7 @@ class TrainingSink(Sink):
 
         # index proximities
         if s_id not in self.prox:
-            self.prox[s_id] = list() # with repetition ~ weighted
+            self.prox[s_id] = list()  # with repetition ~ weighted
         # self.prox[s_id].append(o_id)
         # self.prox[s_id].append("{} {} {}".format(s_id, p_id, o_id))
         self.prox[s_id].append("{} {} {}".format(s_id, p_id, o_id))
@@ -77,6 +79,7 @@ class TrainingSink(Sink):
         #     self.preds[p_id] = list()
         # self.preds[p_id].append((s_id, o_id))
 
+
 class TestSink(Sink):
 
     def __init__(self, d):
@@ -88,7 +91,7 @@ class TestSink(Sink):
 
     def triple(self, s, p, o):
         if not type(o) is URIRef:
-            return # ignore literals
+            return  # ignore literals
 
         # print s,p,o
         s_ = str(s)
@@ -99,9 +102,10 @@ class TestSink(Sink):
             p_id = self.d[p_]
             o_id = self.d[o_]
         except KeyError:
-            return # ignore resources not in training data
+            return  # ignore resources not in training data
 
         self.out.write("{} {} {}\n".format(s_id, p_id, o_id))
+
 
 src = TrainingSink()
 src_n = MyParser(src)
@@ -134,4 +138,3 @@ with open("{}_sentences.txt".format(dsid), 'w') as f:
 
         for s in sentences:
             f.write("{}\n".format(s))
-
