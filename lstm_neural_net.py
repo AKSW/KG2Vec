@@ -196,7 +196,7 @@ y_test = numpy.asarray(y_test)
 #         print('\nTesting loss: {}, acc: {:.2f}\n'.format(loss, acc*100))
 
 # -- Create Keras model
-def build_model():
+def lstm_model():
     model = Sequential()
     model.add(LSTM(size, input_shape=(3, size)))  # , return_sequences=True))
     # model.add(LSTM(size))
@@ -204,19 +204,11 @@ def build_model():
     model.compile(loss='mean_squared_error', optimizer='adam')  # , metrics=['accuracy'])
     print(model.summary())
     sys.stdout.flush()
-    model.fit(X_train, y_train, epochs=N_EPOCHS, batch_size=16)  # , callbacks=[TestCallback((X_test, y_test))])
     return model
 
 
-model = build_model()
-
-# # # # Final evaluation of the model
-# for i in range(len(y_test)):
-#     confidence = model.predict(X_test[i:i+1], verbose=1)[0][0]
-#     triple = " ".join(["<" + id2uri[x] + ">" for x in idx_test[i]])
-#     print "{}\t{}".format(confidence, triple)
-#     # scores = model.evaluate(X_test[i:i+1], y_test[i:i+1], verbose=0)
-#     # print("example: {}\n\t{}\n\tlabel: {}\n\taccuracy: {:.2f}".format(i, [id2uri[x] for x in idx_test[i]], y_test[i], scores[1]*100))
+model = lstm_model()
+model.fit(X_train, y_train, epochs=N_EPOCHS, batch_size=16)  # , callbacks=[TestCallback((X_test, y_test))])
 
 hits1 = 0
 hits3 = 0
