@@ -17,6 +17,7 @@ def learn(inp, outp, size):
     model = Word2Vec(LineSentence(inp),
                      size=int(size),
                      window=3,
+                     sg=0, # 1 = To use Skip-Gram (0 is CBOW)
                      sample=0,
                      negative=5,
                      min_count=1,
