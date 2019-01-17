@@ -7,15 +7,22 @@ from keras.layers import Dense, LSTM
 # from keras.preprocessing import sequence
 import sys
 
-dsid = sys.argv[1]
-verb_type = sys.argv[2]
-neg_sampling = sys.argv[3]
-epochs = sys.argv[4]
+# dsid = sys.argv[1]
+# verb_type = sys.argv[2]
+# neg_sampling = sys.argv[3]
+# epochs = sys.argv[4]
 
-embeddings = "{}_{}.txt.w2v".format(dsid, verb_type)
-train_triples = "{}_output.txt".format(dsid)
-test_triples = "{}-test_output.txt".format(dsid)
-dictionary = "{}_dictionary.txt".format(dsid)
+# embeddings = "{}_{}.txt.w2v".format(dsid, verb_type)
+# train_triples = "{}_output.txt".format(dsid)
+# test_triples = "{}-test_output.txt".format(dsid)
+# dictionary = "{}_dictionary.txt".format(dsid)
+
+embeddings = sys.argv[1]
+train_triples = sys.argv[2]
+test_triples = sys.argv[3]
+dictionary = sys.argv[4]
+neg_sampling = sys.argv[5]
+epochs = sys.argv[6]
 
 # fix random seed for reproducibility
 numpy.random.seed(7)
@@ -52,9 +59,13 @@ def read_training_data(train_file):
     _y_train = list()
     with open(train_file) as f:
         for line in f:
-            line = line[:-1].split(' ')
-            seq = [vectors[x] for x in line]
-            key = (line[0], line[1])
+            try:
+                line = line[:-1].split(' ')
+                seq = [vectors[x] for x in line]
+                key = (line[0], line[1])
+            except KeyError:
+                print(f'WARNING SAMPLE SKIPPED: {line}')
+
             if key not in _training:
                 _training[key] = list()
             _training[key].append(line[2])
