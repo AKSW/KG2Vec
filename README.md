@@ -3,7 +3,7 @@
 
 ## Usage
 
-* Download data from https://s3.eu-west-2.amazonaws.com/tsoru.aksw.org/kg2vec
+* Download data from http://tsoru.aksw.org/kg2vec/
 
 ```bash
 sh kg2vec_<scoring>.sh <dataset_id> <training_data> <dimensions> <test_data> <verbalization_type> <neg_sampling> <training_epochs>
