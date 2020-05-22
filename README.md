@@ -19,6 +19,10 @@ sh kg2vec_lstm.sh aksw-bib aksw-bib.train+valid.nt 10 aksw-bib.test.nt output ra
 sh kg2vec_analogy.sh aksw-bib aksw-bib.train+valid.nt 10 aksw-bib.test.nt output
 ```
 
+## Use cases
+
+* An add-on for the [Genesis Linked Data browser](https://github.com/dice-group/GENESIS/tree/diesel) uses a low-dimensional KG2Vec model trained on DBpedia for retrieving similar resources.
+
 ## Cite
 
 * Presented at the 5th European Conference on Data Analysis (ECDA 2018) as _"A Simple and Fast Approach to Knowledge Graph Embedding"_.
